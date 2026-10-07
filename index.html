@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>itw</title>
+  <style>
+    :root { --speed: 5s; --accent: #ff6a13; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #111; overflow: hidden; font-family: "Calibri", system-ui, sans-serif; }
+
+    .stage { position: relative; height: 100vh; }
+
+    .logo {
+      position: absolute; top: 24px; left: 24px; z-index: 5;
+      width: 130px; height: auto;
+      filter: invert(1);
+      mix-blend-mode: screen;
+      filter: invert(1) brightness(0.8) contrast(1.2);
+    }
+
+    .text {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font: 800 clamp(2.5rem, 9vw, 8rem) system-ui, sans-serif;
+      letter-spacing: 0.02em;
+      color: #2a2a2a;
+    }
+    .beam, .lit { 
+      clip-path: polygon(
+        calc(55.5vw - 10vh) 25vh, 
+        calc(55.5vw - 10vh) 25vh, 
+        30vw 100vh, 
+        -40vw 100vh
+        );
+      animation: sweep var(--speed) ease-in-out infinite alternate;
+    }
+    .beam {
+      position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(255,140,60,.3), rgba(255,255,255,0) 90%);
+      filter: blur(10px);
+    }
+    .lit { color: #d6d6d6; }
+
+    .lamp { 
+      position: absolute; left: 57.5vw; top: 0;
+      transform-origin: 0 0;
+      transform: rotate(20deg);
+      animation: swing var(--speed) ease-in-out infinite alternate;
+      z-index: 10;
+    }
+    @keyframes swing { to { transform: rotate(-20deg); } }
+
+    .cord { position: absolute; left: -1px; top: 0; width: 2px; height: 21vh; background: #555; }
+    .shade {
+      position: absolute; top: 21vh; left: -55px; width: 110px; height: 40px;
+      clip-path: polygon(40% 0, 60% 0, 100% 100%, 0 100%);
+      background: linear-gradient(#ddd, #777);
+      border-bottom: 3px solid var(--accent);
+    }
+
+    .btn {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 5;
+      padding: 10px 22px;
+      border: 1px solid #444;
+      border-radius: 999px;
+      color: #bbb;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    @keyframes sweep {
+      to { 
+        clip-path: polygon(
+          calc(55.5vw + 10vh) 25vh, 
+          calc(55.5vw + 10vh) 25vh , 
+          140vw 100vh, 
+          70vw 100vh
+        ); 
+      }
+    }
+    
+    .btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <img class="logo" src="logo.png" alt="Company logo">
+    <div class="text">COMING SOON</div>
+    <div class="beam"></div>
+    <div class="text lit">COMING SOON</div>
+    <div class="lamp"><div class="cord"></div><div class="shade"></div></div>
+  </div>
+  <a class="btn" href="privacy.html">Privacy Statement</a>
+</body>
+</html>
